@@ -1,0 +1,81 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+def daggerVersion = "2.5"
+def butterKnifeVersion = "8.2.1"
+def rxJavaVersion = "1.1.7"
+def retrofitVersion = "2.1.0"
+def supportVersion = "24.0.0"
+def glideVersion = "3.7.0"
+
+//def rxBindingVersion = '0.4.0'
+
+def leakCanaryVersion = "1.3.1"
+def blockCanaryVersion = '1.1.4'
+
+project.ext {
+    libSupportAppcompat = "com.android.support:appcompat-v7:${supportVersion}"
+    libSupportDesign = "com.android.support:design:${supportVersion}"
+    libSupportCardview = "com.android.support:cardview-v7:${supportVersion}"
+    libSupportRecyclerview = "com.android.support:recyclerview-v7:${supportVersion}"
+    libSupportV4 = "com.android.support:support-v4:${supportVersion}"
+    libRxAndroid = "io.reactivex:rxandroid:1.1.0"
+    libRxJava = "io.reactivex:rxjava:$rxJavaVersion"
+    libButterKnife = "io.reactivex:rxjava:$butterKnifeVersion"
+    libEventBus = "org.greenrobot:eventbus:3.0.0"
+
+    libRetrofit = "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    libRetrofitConverterGson = "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    libRetrofitAdapterRxJava = "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+    libOkHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:3.0.0-RC1"
+
+    libDagger = "com.google.dagger:dagger:${daggerVersion}"
+    libDaggerCompiler = "com.google.dagger:dagger-compiler:${daggerVersion}"
+    libJavaxAnnotation = "javax.annotation:jsr250-api:1.0"
+
+    libGlide = "com.github.bumptech.glide:glide:${glideVersion}"
+    libDesign = "com.android.support:design:${supportVersion}"
+
+//    libRxBinding = "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}"
+//    libRxBindingSupportV4 = "com.jakewharton.rxbinding:rxbinding-support-v4:${rxBindingVersion}"
+//    libRxBindingAppcompatV7 = "com.jakewharton.rxbinding:rxbinding-appcompat-v7:${rxBindingVersion}"
+//    libRxBindingDesign = "com.jakewharton.rxbinding:rxbinding-design:${rxBindingVersion}"
+//    libRxBindingRecyclerview = "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:${rxBindingVersion}"
+
+//    libRealm = "io.realm:realm-android:0.87.5"
+
+    debugDependencies = [
+            leakCanary : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+            blockcanary: "com.github.moduth:blockcanary-ui:${blockCanaryVersion}",
+    ]
+
+    releaseDependencies = [
+            leakCanary : "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}",
+            blockcanary: "com.github.moduth:blockcanary-no-op:${blockCanaryVersion}",
+    ]
+}

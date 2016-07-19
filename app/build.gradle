@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'// 注释处理
+def butterKnifeVersion = "8.2.1"
+def rxJavaVersion = "1.1.7"
+def retrofitVersion = "2.1.0"
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "com.yz.app"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //解决dagger2跟butterknife冲突
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    //如果.so文件跟Eclipse一样放在了libs文件夹下就需要加上这一行代码
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["libs"]
+        }
+    }
+
+    signingConfigs {
+        def Properties localProps = new Properties()
+        localProps.load(new FileInputStream(file('../local.properties')))
+        def Properties keyProps = new Properties()
+
+        // 如果读取不到'keystore.props.file'属性，就使用debug keystore
+
+        if (localProps['keystore.props.file']) {
+            keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
+        } else {
+            keyProps["store"] = '../buildsystem/debug.keystore'
+            keyProps["alias"] = 'android'
+            keyProps["storePass"] = 'androiddebugkey'
+            keyProps["pass"] = 'android'
+        }
+
+        debug {
+            storeFile file(keyProps["store"])
+            keyAlias keyProps["alias"]
+            storePassword keyProps["storePass"]
+            keyPassword keyProps["pass"]
+        }
+
+        release {
+            // release版本使用assert确保存在该属性否则报错，避免错误打包
+            assert localProps['keystore.props.file'];
+            storeFile file(keyProps["store"])
+            keyAlias keyProps["alias"]
+            storePassword keyProps["storePass"]
+            keyPassword keyProps["pass"]
+        }
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile rootProject.ext.libSupportAppcompat//
+    compile rootProject.ext.libSupportV4//
+    compile rootProject.ext.libSupportCardview//
+    compile rootProject.ext.libGlide//
+    compile rootProject.ext.libDesign//
+    compile rootProject.ext.libDagger//
+    provided rootProject.ext.libDaggerCompiler
+    //
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    //
+    compile "com.jakewharton:butterknife:$butterKnifeVersion"
+    //
+    apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    //
+    compile "io.reactivex:rxjava:$rxJavaVersion"
+    //
+    //
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    //
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    //
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    //
+    compile 'io.reactivex:rxandroid:1.2.1'
+    //
+    compile 'com.malinskiy:superrecyclerview:1.1.4'
+    //
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    compile 'com.jakewharton:disklrucache:2.0.2'
+    compile 'com.orhanobut:logger:1.15'
+
+}
