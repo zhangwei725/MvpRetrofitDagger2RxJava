@@ -33,6 +33,7 @@ public abstract class BasePresenter<IV extends BaseView> {
             mViewRef = null;
         }
     }
+
     public static class MvpViewNotAttachedException extends RuntimeException {
         public MvpViewNotAttachedException() {
             super("Please call Presenter.attachView(MvpView) before" +

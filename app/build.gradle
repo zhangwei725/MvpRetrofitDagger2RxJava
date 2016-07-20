@@ -68,7 +68,9 @@ android {
 
 
 }
-
+repositories {
+    maven { url "https://jitpack.io" }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -102,5 +104,6 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
     compile 'com.jakewharton:disklrucache:2.0.2'
     compile 'com.orhanobut:logger:1.15'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.9.3'
 
 }

@@ -1,10 +1,12 @@
 package com.yz.app.view.adapter;
 
-import android.content.Context;
-
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.yz.app.entity.Image;
-import com.yz.app.view.adapter.base.BaseRcAdapterHelper;
-import com.yz.app.view.adapter.base.RcQuickAdapter;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * ----------BigGod be here!----------/
@@ -37,15 +39,14 @@ import com.yz.app.view.adapter.base.RcQuickAdapter;
  * 修改备注：
  */
 
-public class WelfareAdapter extends RcQuickAdapter<Image> {
-
-            
-    public WelfareAdapter(Context context, int layoutResId) {
-        super(context, layoutResId);
+public class WelfareAdapter extends BaseQuickAdapter<Image> {
+    @Inject
+    public WelfareAdapter(int layoutResId, List<Image> data) {
+        super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseRcAdapterHelper helper, Image item) {
+    protected void convert(BaseViewHolder baseViewHolder, Image image) {
 
     }
 }
