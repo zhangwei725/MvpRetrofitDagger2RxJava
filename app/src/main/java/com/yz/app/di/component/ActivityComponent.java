@@ -7,4 +7,7 @@ import dagger.Component;
 @ForActivity
 @Component( modules = ActivityModule.class)
 public interface ActivityComponent {
+
+
+
 }
