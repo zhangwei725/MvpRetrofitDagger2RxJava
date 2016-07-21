@@ -20,7 +20,6 @@ public abstract class MvpActivity<V extends BaseView, P extends BasePresenter<V>
         if (mPresenter == null) {
             mPresenter = createPresenter();
         }
-
         mPresenter.attachView(this);
         setPresenter(mPresenter);
     }
@@ -31,11 +30,6 @@ public abstract class MvpActivity<V extends BaseView, P extends BasePresenter<V>
         if (mPresenter != null) {
             mPresenter.detachView();
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Override

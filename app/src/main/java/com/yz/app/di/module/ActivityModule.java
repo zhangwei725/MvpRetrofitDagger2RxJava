@@ -1,36 +1,27 @@
 package com.yz.app.di.module;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.Fragment;
 
 import com.yz.app.di.ForActivity;
 
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * 这个module把activity暴露给相关联的类。
+ * 比如在fragment中使用activity的context。
+ */
 @Module
 public class ActivityModule {
-    private Activity mActivity;
+    private final Context mContext;
 
-    public ActivityModule(Activity activity) {
-        mActivity = activity;
-    }
-
-    public ActivityModule(Fragment fragment) {
-        mActivity = fragment.getActivity();
-    }
-
-    @Provides
-    Activity provideActivity() {
-        return mActivity;
+    public ActivityModule(Context mContext) {
+        this.mContext = mContext;
     }
 
     @Provides
     @ForActivity
-    Context providesContext() {
-        return mActivity;
+    Context provideActivityContext() {
+        return mContext;
     }
-
-
 }

@@ -3,9 +3,6 @@ package com.yz.app.common.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.yz.app.App;
-import com.yz.app.di.component.AppComponent;
-
 import butterknife.ButterKnife;
 
 /**
@@ -64,8 +61,18 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public abstract void initView();
 
-    public AppComponent getAppComponent() {
-        return ((App) getApplication()).getAppComponent();
-    }
+//    protected AppComponent getAppComponent() {
+//        return App.getInstance().getAppComponent();
+//    }
+//
+//    protected ActivityModule getActivityModule() {
+//        return new ActivityModule(this);
+//    }
 
+//    protected ActivityComponent getActivityComponent() {
+//        return DaggerActivityComponent.builder()
+//                .appComponent(getAppComponent())
+//                .activityModule(getActivityModule())
+//                .build();
+//    }
 }

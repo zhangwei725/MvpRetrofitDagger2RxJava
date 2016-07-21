@@ -2,11 +2,9 @@ package com.yz.app.di.component;
 
 import android.content.Context;
 
-import com.yz.app.App;
 import com.yz.app.common.api.ApiService;
-import com.yz.app.di.ForApplication;
-import com.yz.app.di.module.ApiServiceModule;
 import com.yz.app.di.module.AppModule;
+import com.yz.app.di.module.RetrofitModule;
 
 import javax.inject.Singleton;
 
@@ -22,12 +20,9 @@ import dagger.Component;
  * 修改备注：
  */
 @Singleton
-@Component(modules = {AppModule.class, ApiServiceModule.class})
+@Component(modules = {AppModule.class, RetrofitModule.class})
 public interface AppComponent {
-    @ForApplication
-    Context context();
-
-    App application();
+    Context getContext();
 
     ApiService getApiService();
 

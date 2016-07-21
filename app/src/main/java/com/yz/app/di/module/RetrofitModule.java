@@ -28,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 修改时间：2016-07-19 14:19
  * 修改备注：
  */
+
 @Module
 public class RetrofitModule {
     private final Context context;
@@ -38,11 +39,11 @@ public class RetrofitModule {
 
     @Singleton
     @Provides
-    public Retrofit providesRetrofit() {
+    public Retrofit providesRetrofit(Gson gson) {
         return new Retrofit.Builder()
                 .baseUrl(UrlManager.BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(provideGson()))
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 
@@ -54,11 +55,11 @@ public class RetrofitModule {
     }
 
     @Provides
-    public OkHttpClient provideOkhttpClient() {
+    public OkHttpClient provideOkhttpClient(Cache cache,CacheInterceptor cacheInterceptor,CookiesManager cookiesManager) {
         return new OkHttpClient.Builder()
-                .cache(provideCache())//添加缓存
-                .addInterceptor(providesCacheInterceptor())
-                .cookieJar(providesCookies())
+                .cache(cache)//添加缓存
+                .addInterceptor(cacheInterceptor)
+                .cookieJar(cookiesManager)
                 .build();
 
     }

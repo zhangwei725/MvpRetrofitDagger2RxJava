@@ -5,6 +5,7 @@ import android.app.Application;
 import com.yz.app.di.component.AppComponent;
 import com.yz.app.di.component.DaggerAppComponent;
 import com.yz.app.di.module.AppModule;
+import com.yz.app.di.module.RetrofitModule;
 
 /**
  * 项目名称：RetrofitDagger2RxJava
@@ -29,9 +30,7 @@ public class App extends Application {
         super.onCreate();
         app = this;
         initAppComponent();
-
     }
-
     public AppComponent getAppComponent() {
         return appConponent;
     }
@@ -39,6 +38,7 @@ public class App extends Application {
     private void initAppComponent() {
         appConponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .retrofitModule(new RetrofitModule(this))
                 .build();
     }
 

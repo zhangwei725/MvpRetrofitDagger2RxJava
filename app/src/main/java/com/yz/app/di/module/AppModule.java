@@ -1,11 +1,11 @@
 package com.yz.app.di.module;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.yz.app.App;
 import com.yz.app.common.api.ApiService;
-import com.yz.app.di.ForApplication;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,7 +20,7 @@ import retrofit2.Retrofit;
  * 修改时间：2016-07-16 19:05
  * 修改备注：
  */
-@Module(includes = ApiServiceModule.class)
+@Module
 public class AppModule {
     protected final App mApp;
 
@@ -28,19 +28,17 @@ public class AppModule {
         this.mApp = mApp;
     }
 
+
     @Provides
-    Application provideApplication() {
+    @Singleton
+    Context providesContext() {
         return mApp;
     }
 
     @Provides
-    @ForApplication
-    Context provideContext() {
-        return mApp;
-    }
-
-    @Provides
-    public ApiService providesAPIService(Retrofit retrofit) {
+    ApiService providesApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
+
+
 }
