@@ -1,13 +1,15 @@
 package com.yz.app.di.component;
 
-import com.yz.app.di.ForActivity;
+import android.app.Activity;
+
+import com.yz.app.di.PerActivity;
 import com.yz.app.di.module.ActivityModule;
 
 import dagger.Component;
-@ForActivity
-@Component( modules = ActivityModule.class)
+
+@PerActivity
+@Component(modules = ActivityModule.class)
 public interface ActivityComponent {
 
-
-
+    Activity activity();
 }

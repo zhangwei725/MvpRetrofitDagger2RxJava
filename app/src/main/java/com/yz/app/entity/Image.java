@@ -11,16 +11,6 @@ public class Image implements Serializable{
     public String desc;
     public Date createdAt;
     public Date publishedAt;
-    /**
-     *  "createdAt": "2016-03-24T12:35:23.841Z",
-     *  "desc": "3.24",
-     *  "publishedAt": "2016-03-25T11:23:49.570Z",
-     *  "source": "chrome",
-     *  "type": "福利",
-     *  "url": "http://ww1.sinaimg.cn/large/7a8aed7bjw1f27uhoko12j20ez0miq4p.jpg",
-     *  "used": true,
-     *  "who": "张涵宇"
-     */
     public boolean isUsed() {
         return used;
     }

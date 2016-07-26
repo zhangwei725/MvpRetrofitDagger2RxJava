@@ -37,16 +37,12 @@ public class GanWuData  {
         public List<News> androidList;
 
         @SerializedName("休息视频")
-        public List<News> 休息视频List;
-
-        @SerializedName("iOS")
-        public List<News> iOSList;
-
+        public List<News> videoList;
         @SerializedName("福利")
         public List<News> 妹纸List;
 
         @SerializedName("拓展资源")
-        public List<News> 拓展资源List;
+        public List<News> List;
 
         @SerializedName("瞎推荐")
         public List<News> 瞎推荐List;

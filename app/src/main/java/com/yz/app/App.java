@@ -31,6 +31,7 @@ public class App extends Application {
         app = this;
         initAppComponent();
     }
+
     public AppComponent getAppComponent() {
         return appConponent;
     }

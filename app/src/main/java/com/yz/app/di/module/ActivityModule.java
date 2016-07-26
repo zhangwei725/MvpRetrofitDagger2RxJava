@@ -1,8 +1,8 @@
 package com.yz.app.di.module;
 
-import android.content.Context;
+import android.app.Activity;
 
-import com.yz.app.di.ForActivity;
+import com.yz.app.di.PerActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,15 +13,15 @@ import dagger.Provides;
  */
 @Module
 public class ActivityModule {
-    private final Context mContext;
+    private final Activity activity;
 
-    public ActivityModule(Context mContext) {
-        this.mContext = mContext;
+    public ActivityModule(Activity activity) {
+        this.activity = activity;
     }
 
     @Provides
-    @ForActivity
-    Context provideActivityContext() {
-        return mContext;
+    @PerActivity
+    Activity activity() {
+        return activity;
     }
 }
