@@ -15,6 +15,9 @@ import com.yz.app.di.module.RetrofitModule;
  * 修改人：zhangwei
  * 修改时间：2016-07-16 18:54
  * 修改备注：
+ * 修改人：lvyerose
+ * 修改时间：2016-07-16 18:54
+ * 修改备注：妈蛋 给老子提交上
  */
 
 public class App extends Application {
