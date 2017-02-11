@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity   {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,"你妈嗨",Toast.LENGTH_LONG);
+                Toast.makeText(mContext,"你妈嗨",Toast.LENGTH_LONG).show();
             }
         });
     }
